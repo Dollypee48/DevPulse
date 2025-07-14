@@ -1,21 +1,17 @@
-
+// src/context/ActivityContext.jsx
 import { createContext, useContext, useEffect, useState } from "react";
 import { loadActivitiesFromStorage, saveActivitiesToStorage } from "../utils/localStorage";
 
-
 const ActivityContext = createContext();
 
-// Provider component
 export function ActivityProvider({ children }) {
   const [activities, setActivities] = useState([]);
 
-  // Load from localStorage on mount
   useEffect(() => {
     const stored = loadActivitiesFromStorage();
     if (stored) setActivities(stored);
   }, []);
 
-  // Save to localStorage on change
   useEffect(() => {
     saveActivitiesToStorage(activities);
   }, [activities]);
@@ -24,12 +20,23 @@ export function ActivityProvider({ children }) {
     setActivities((prev) => [activity, ...prev]);
   };
 
+  const updateActivity = (updated) => {
+    setActivities((prev) =>
+      prev.map((a) => (a.id === updated.id ? updated : a))
+    );
+  };
+
+  const deleteActivity = (id) => {
+    setActivities((prev) => prev.filter((a) => a.id !== id));
+  };
+
   return (
-    <ActivityContext.Provider value={{ activities, addActivity }}>
+    <ActivityContext.Provider
+      value={{ activities, addActivity, updateActivity, deleteActivity }}
+    >
       {children}
     </ActivityContext.Provider>
   );
 }
 
-// Custom hook to use the context
 export const useActivity = () => useContext(ActivityContext);
