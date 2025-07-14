@@ -30,7 +30,9 @@ export default function ActivityList() {
   if (activities.length === 0) {
     return (
       <div className="text-center py-10">
-        <p className="text-gray-500 text-md italic">No activities logged yet. Start building your dev history!</p>
+        <p className="text-gray-500 text-md italic">
+          No activities logged yet. Start building your dev history!
+        </p>
       </div>
     );
   }
@@ -47,24 +49,24 @@ export default function ActivityList() {
           {editingId === activity.id ? (
             <div>
               <input
-                className="w-full mb-2 px-3 py-2 rounded text-sm bg-gray-50 dark:bg-gray-700"
+                className="w-full mb-2 px-3 py-2 rounded text-sm bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-white"
                 value={editForm.title}
                 onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
               />
               <textarea
-                className="w-full mb-2 px-3 py-2 rounded text-sm bg-gray-50 dark:bg-gray-700"
+                className="w-full mb-2 px-3 py-2 rounded text-sm bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-white"
                 rows={3}
                 value={editForm.notes}
                 onChange={(e) => setEditForm({ ...editForm, notes: e.target.value })}
               />
               <input
-                className="w-full mb-2 px-3 py-2 rounded text-sm bg-gray-50 dark:bg-gray-700"
+                className="w-full mb-2 px-3 py-2 rounded text-sm bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-white"
                 value={editForm.tags}
                 onChange={(e) => setEditForm({ ...editForm, tags: e.target.value })}
               />
               <input
                 type="date"
-                className="w-full mb-3 px-3 py-2 rounded text-sm bg-gray-50 dark:bg-gray-700"
+                className="w-full mb-3 px-3 py-2 rounded text-sm bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-white"
                 value={editForm.date}
                 onChange={(e) => setEditForm({ ...editForm, date: e.target.value })}
               />
